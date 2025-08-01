@@ -16,6 +16,10 @@ public class TaskCLI {
         String description = args[1];
         TaskManager.addTask(description);
         break;
+
+      case "list":
+        TaskManager.listAllTasks();
+        break;
     
       default:
         System.out.println("Comando desconhecido: " + command);

@@ -30,12 +30,19 @@ public class TaskManager {
       }
 
       BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
-      String json = reader.readLine();
+      StringBuilder sb = new StringBuilder();
+      String line;
+      while ((line  = reader.readLine()) != null) {
+        sb.append(line);
+      }
+      
       reader.close();
+      String json = sb.toString();
 
       if (json == null || json.equals("[]")) return tasks;
 
-      String[] entries = json.substring(1, json.length() - 1).split("\\}, \\{");
+      String[] entries = json.substring(1, json.length() - 1).split("\\},\\{");
+
 
       for (String entry : entries) {
         String jsonEntry = entry;
@@ -88,6 +95,25 @@ public class TaskManager {
     } catch (IOException e ) {
       System.out.println("Erro ao salvar tarefas: " + e.getMessage());
     }
+  }
+
+  public static void listAllTasks() {
+    List<Task> tasks = readTasks();
+
+    if (tasks.isEmpty()) {
+      System.out.println("Nenhuma tarefa encontrada.");
+      return;
+    }
+
+    for (Task task: tasks) {
+      System.out.println("ID: " + task.id);
+      System.out.println("Descrição: " + task.description);
+      System.out.println("Status: " + task.status);
+      System.out.println("Criada em: " + task.createdAt);
+      System.out.println("Atualizada em: " + task.updatedAt);
+      System.out.println("--------------------------");
+    }
+
   }
 
 }
