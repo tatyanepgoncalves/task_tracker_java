@@ -56,6 +56,32 @@ public class TaskCLI {
         
         break;
 
+      case "mark-done":
+        if (args.length < 2) {
+          System.out.println("Uso: java TaskCLI mark-done <id>");
+          return;
+        }
+        try {
+          int id = Integer.parseInt(args[1]);
+          TaskManager.markTaskDone(id);
+        } catch (NumberFormatException e) {
+          System.out.println("ID inválido.");
+        }
+        break;
+      
+      case "mark-in-progress":
+        if (args.length < 2) {
+          System.out.println("Uso: java TaskCLI mark-done <id>");
+          return;
+        }
+        try {
+          int id = Integer.parseInt(args[1]);
+          TaskManager.markTaskInProgress(id);
+        } catch (NumberFormatException e) {
+          System.out.println("ID inválido.");
+        }
+        break;
+
       default:
         System.out.println("Comando desconhecido: " + command);
     }

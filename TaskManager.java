@@ -170,4 +170,46 @@ public class TaskManager {
 
   }
 
+  public static void markTaskDone(int id) {
+    List<Task> tasks = readTasks();
+    boolean found = false;
+
+    for (Task task : tasks) {
+      if (task.id == id) {
+        task.markDone();
+        found = true;
+        break;
+      }
+    }
+
+    if (found) {
+      saveTasks(tasks);
+      System.out.println("Tarefa marcada como concluída.");
+    } else {
+      System.out.println("Tarefa com ID: " + id + " não encontrada.");
+    }
+
+  }
+  
+  public static void markTaskInProgress(int id) {
+    List<Task> tasks = readTasks();
+    boolean found = false;
+
+    for (Task task : tasks) {
+      if (task.id == id) {
+        task.markInProgress();
+        found = true;
+        break;
+      }
+    }
+
+    if (found) {
+      saveTasks(tasks);
+      System.out.println("Tarefa marcada como em andamento.");
+    } else {
+      System.out.println("Tarefa com ID: " + id + " não encontrada.");
+    }
+
+  }
+
 }
