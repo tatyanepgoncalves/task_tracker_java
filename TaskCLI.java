@@ -40,8 +40,22 @@ public class TaskCLI {
           System.out.println("ID inválido: deve ser um número inteiro.");
         }
         break;
+        
+      case "delete":
+        if (args.length < 2) {
+          System.out.println("Uso: java TaskCLI delete <id>.");
+          return;
+        }
 
-    
+        try {
+          int id = Integer.parseInt(args[1]);
+          TaskManager.deleteTask(id);
+        } catch (NumberFormatException e) {
+          System.out.println("ID inválido: deve ser um número inteiro.");
+        }
+        
+        break;
+
       default:
         System.out.println("Comando desconhecido: " + command);
     }

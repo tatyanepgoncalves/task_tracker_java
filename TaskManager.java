@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.time.LocalDateTime;
 
 public class TaskManager {
   private static final String FILE_NAME = "tasks.json";
@@ -157,4 +156,18 @@ public class TaskManager {
     }
 
   }
+
+  public static void deleteTask(int id) {
+    List<Task> tasks = readTasks();
+    boolean removed = tasks.removeIf(task -> task.id == id);
+
+    if (removed) {
+      saveTasks(tasks);
+      System.out.println("Tarefa removida com sucesso.");
+    } else {
+      System.out.println("Tarefa com ID " + id + " não encontrada.");
+    }
+
+  }
+
 }
