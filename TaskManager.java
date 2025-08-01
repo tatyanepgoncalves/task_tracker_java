@@ -68,7 +68,12 @@ public class TaskManager {
         }
 
         Task task = new Task(id, description);
-        task.status = status;
+        try {
+          task.status = TaskStatus.fromString(status);
+        } catch (IllegalArgumentException e) {
+          System.out.println("Status inválido encontrado no arquivo: " + status);
+          continue;
+        }
         task.createdAt = createdAt;
         task.updatedAt = updatedAt;
         
@@ -120,7 +125,7 @@ public class TaskManager {
     boolean found = false;
 
     for (Task task : tasks) {
-      if (task.status.equalsIgnoreCase(status)) {
+      if (task.status.getValue().equalsIgnoreCase(status)) {
         System.out.println("ID: " + task.id);
         System.out.println("Descrição: " + task.description);
         System.out.println("Status: " + task.status);
