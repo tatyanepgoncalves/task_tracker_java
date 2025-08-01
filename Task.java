@@ -15,7 +15,7 @@ public class Task {
     this.updatedAt = this.createdAt;
   }
 
-  public void updatedDescription(String newDescription) {
+  public void updateDescription(String newDescription) {
     this.description = newDescription;
     this.updatedAt = LocalDateTime.now().toString();
   }

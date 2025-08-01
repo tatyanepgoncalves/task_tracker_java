@@ -136,4 +136,25 @@ public class TaskManager {
       System.out.println("Nenhuma tarefa com status: " + status);
     }
   }
+
+  public static void updatedTask(int id, String newDescription) {
+    List<Task> tasks = readTasks();
+    boolean updated = false;
+
+    for (Task task : tasks) {
+      if (task.id == id) {
+        task.updateDescription(newDescription);
+        updated = true;
+        break;
+      }
+    }
+
+    if (updated) {
+      saveTasks(tasks);
+      System.out.println("Tarefa atualizada com sucesso.");
+    } else {
+      System.out.println("Tarefa com ID" + id + " não encontrada.");
+    }
+
+  }
 }

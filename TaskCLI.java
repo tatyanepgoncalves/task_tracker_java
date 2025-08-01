@@ -25,6 +25,22 @@ public class TaskCLI {
           TaskManager.listByStatus(statusFilter);
         }
         break;
+      
+      case "update":
+        if (args.length < 3) {
+          System.out.println("Uso: java TaskCLI update <id> \"nova descrição\"");
+          return;
+        }
+
+        try {
+          int id = Integer.parseInt(args[1]);
+          String newDescription = args[2];
+          TaskManager.updatedTask(id, newDescription);
+        } catch (NumberFormatException e) {
+          System.out.println("ID inválido: deve ser um número inteiro.");
+        }
+        break;
+
     
       default:
         System.out.println("Comando desconhecido: " + command);
