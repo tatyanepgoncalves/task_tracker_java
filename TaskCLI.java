@@ -18,7 +18,12 @@ public class TaskCLI {
         break;
 
       case "list":
-        TaskManager.listAllTasks();
+        if (args.length == 1) {
+          TaskManager.listAllTasks();
+        } else {
+          String statusFilter = args[1];
+          TaskManager.listByStatus(statusFilter);
+        }
         break;
     
       default:

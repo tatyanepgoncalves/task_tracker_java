@@ -116,4 +116,24 @@ public class TaskManager {
 
   }
 
+  public static void listByStatus(String status) {
+    List<Task> tasks = readTasks();
+    boolean found = false;
+
+    for (Task task : tasks) {
+      if (task.status.equalsIgnoreCase(status)) {
+        System.out.println("ID: " + task.id);
+        System.out.println("Descrição: " + task.description);
+        System.out.println("Status: " + task.status);
+        System.out.println("Criada em: " + task.createdAt);
+        System.out.println("Atualizada em: " + task.updatedAt);
+        System.out.println("--------------------------");
+        found = true;
+      }
+    }
+
+    if (!found) {
+      System.out.println("Nenhuma tarefa com status: " + status);
+    }
+  }
 }
